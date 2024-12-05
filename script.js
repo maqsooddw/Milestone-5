@@ -239,5 +239,100 @@ document
         });
     }
     edu.innerHTML = educationall;
+    // shareable and pdf contant start
+    // for shareable link codeing
+    // Generate a shareable URL with the username only
+    // Shareable Link Code
+    var shareableLinkDiv = document.querySelector('#ShareablelinkAnchor');
+    var username = document.querySelector('#username').value;
+    if (username) {
+        // Generate a unique URL (for simplicity, using a timestamp)
+        var uniqueLink = window.location.href + "?user=" + encodeURIComponent(username);
+        // Show the output
+        shareableLinkDiv.innerHTML = "\n      <p class=\"shareable-link\">Shareable Link: <a href=\"".concat(uniqueLink, "\" target=\"_blank\">").concat(uniqueLink, "</a></p>\n  ");
+    }
+    else {
+        alert("Please enter both username and full name.");
+    }
+    ;
+    // shareable  contant end
+    // Function to auto-fill the form when the page is loaded with query parameters
+    function autoFillForm() {
+        var urlParams = new URLSearchParams(window.location.search);
+        // Get each query parameter by name
+        var username = urlParams.get('user');
+        var fullname = urlParams.get('fullname');
+        var email = urlParams.get('email');
+        var contact = urlParams.get('contact');
+        var city = urlParams.get('city');
+        var state = urlParams.get('state');
+        var objective = urlParams.get('objective');
+        // Auto-fill the form fields if parameters exist
+        if (username) {
+            var usernameField = document.getElementById('username');
+            if (usernameField) {
+                usernameField.value = username;
+            }
+        }
+        if (fullname) {
+            var fullnameField = document.getElementById('fullname');
+            if (fullnameField) {
+                fullnameField.value = fullname;
+            }
+        }
+        if (email) {
+            var emailField = document.getElementById('emailF');
+            if (emailField) {
+                emailField.value = email;
+            }
+        }
+        if (contact) {
+            var contactField = document.getElementById('contactF');
+            if (contactField) {
+                contactField.value = contact;
+            }
+        }
+        if (city) {
+            var cityField = document.getElementById('cityF');
+            if (cityField) {
+                cityField.value = city;
+            }
+        }
+        if (state) {
+            var stateField = document.getElementById('stateF');
+            if (stateField) {
+                stateField.value = state;
+            }
+        }
+        if (objective) {
+            var objectiveField = document.getElementById('objectiveF');
+            if (objectiveField) {
+                objectiveField.value = objective;
+            }
+        }
+    }
+    // Call autoFillForm when the page loads
+    // Add event listener to ensure autoFillForm is called when the page loads
+    window.addEventListener("load", autoFillForm);
 });
-//   end education 
+// end education 
+// creating onclick event for download pdf button 
+var downloadPdfbutton = document.querySelector('#downloadBtn');
+var shareableLink = document.querySelector('#Shareablelink');
+var headingdiv = document.querySelector("#Heading");
+var formdiv = document.querySelector("#formA");
+// headingdiv.style.display="none"
+// formdiv.style.display="none";
+// dynamicresume.style.display="block";
+function PrintPdf() {
+    downloadPdfbutton.style.display = "none";
+    shareableLink.style.display = "none";
+    headingdiv.style.display = "none";
+    formdiv.style.display = "none";
+    window.print();
+    downloadPdfbutton.style.display = "block";
+    shareableLink.style.display = "block";
+    headingdiv.style.display = "block";
+    formdiv.style.display = "block";
+    ;
+}

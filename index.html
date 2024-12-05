@@ -16,13 +16,18 @@
     <!-- end button div -->
 
 
-
+<div id="formA">
 <!-- Shareable resume builder coding -->
 <h2 id="abc" contenteditable="true">Shareable Resume Builder</h2>
 
 <form id="resume-form">
     <fieldset>
         <legend>Basic Information</legend>
+
+        <!-- inserted username for unique id  -->
+        <label for="name">User Name:</label>
+        <input type="text" id="username" class="input-field" required placeholder="Enter User Name Here"><br>
+
         <label for="name">Full Name:</label>
         <input type="text" id="nameF" class="input-field" required placeholder="Enter Name Here"><br>
 
@@ -90,7 +95,7 @@
 
     <button type="submit" onclick="hideshow()">Generate Code</button>
 </form>
-
+</div>
 <!-- <div id="generated-code"></div>
 <div id="resume-output"></div> -->
 
@@ -212,8 +217,10 @@ height="150"
 </div>
 <!-- End Left and Right Section -->
 
-<div id="Shareablelink"><h3>Shareable Link</h3> <p> <a href="#"></a></p></div>
-<div id="Downloadaspdf"><button>Download as pdf</button></div>
+<div id="Shareablelink"><h3 contenteditable="true">Shareable Link</h3> 
+<p contenteditable="true"> Here is your shareable link for edit and view</p>
+<a href="#" id="ShareablelinkAnchor" target="_blank"></a></div>
+<div id="downloadBtn" onclick="PrintPdf()"><button>Download as pdf</button></div>
 
 
 </div>
@@ -223,7 +230,6 @@ height="150"
 <!-- End Static resume temelete -->
 
 </div>
-
 <script src="./script.js"></script>    
 </body>
 </html>

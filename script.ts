@@ -259,6 +259,7 @@ let ObectiveF = document.getElementById("ObjectiveA") as HTMLElement;
 
 
 // Function to generate resume on form submission
+
 document
   .getElementById("resume-form")!
   .addEventListener("submit", function (event: Event) {
@@ -412,8 +413,140 @@ leftsec1.innerHTML=experincehtml
     }
 
     edu.innerHTML = educationall;
+// shareable and pdf contant start
+
+
+
+
+// for shareable link codeing
+// Generate a shareable URL with the username only
+// Shareable Link Code
+let shareableLinkDiv = document.querySelector('#ShareablelinkAnchor') as HTMLAnchorElement;
+let username= (document.querySelector('#username') as HTMLInputElement).value;
+
+
+if (username) {
+  // Generate a unique URL (for simplicity, using a timestamp)
+  const uniqueLink: string = window.location.href + "?user=" + encodeURIComponent(username);
+
+  // Show the output
+ 
+  shareableLinkDiv.innerHTML = `
+      <p class="shareable-link">Shareable Link: <a href="${uniqueLink}" target="_blank">${uniqueLink}</a></p>
+  `;
+} else {
+  alert("Please enter both username and full name.");
+};
+// shareable  contant end
+// Function to auto-fill the form when the page is loaded with query parameters
+function autoFillForm(): void {
+  const urlParams = new URLSearchParams(window.location.search);
+  
+  // Get each query parameter by name
+  const username = urlParams.get('user');
+  const fullname = urlParams.get('fullname');
+  const email = urlParams.get('email');
+  const contact = urlParams.get('contact');
+  const city = urlParams.get('city');
+  const state = urlParams.get('state');
+  const objective = urlParams.get('objective');
+
+  // Auto-fill the form fields if parameters exist
+  if (username) {
+    const usernameField = document.getElementById('username') as HTMLInputElement | null;
+    if (usernameField) {
+      usernameField.value = username;
+    }
+  }
+
+  if (fullname) {
+    const fullnameField = document.getElementById('fullname') as HTMLInputElement | null;
+    if (fullnameField) {
+      fullnameField.value = fullname;
+    }
+  }
+
+  if (email) {
+    const emailField = document.getElementById('emailF') as HTMLInputElement | null;
+    if (emailField) {
+      emailField.value = email;
+    }
+  }
+
+  if (contact) {
+    const contactField = document.getElementById('contactF') as HTMLInputElement | null;
+    if (contactField) {
+      contactField.value = contact;
+    }
+  }
+
+  if (city) {
+    const cityField = document.getElementById('cityF') as HTMLInputElement | null;
+    if (cityField) {
+      cityField.value = city;
+    }
+  }
+
+  if (state) {
+    const stateField = document.getElementById('stateF') as HTMLInputElement | null;
+    if (stateField) {
+      stateField.value = state;
+    }
+  }
+
+  if (objective) {
+    const objectiveField = document.getElementById('objectiveF') as HTMLTextAreaElement | null;
+    if (objectiveField) {
+      objectiveField.value = objective;
+    }
+  }
+}
+
+// Call autoFillForm when the page loads
+// Add event listener to ensure autoFillForm is called when the page loads
+window.addEventListener("load", autoFillForm);
+
+
+
+
+
+
+
+
   });
 
-//   end education 
+  // end education 
+
+
+
+
+// creating onclick event for download pdf button 
+
+let downloadPdfbutton = document.querySelector('#downloadBtn') as HTMLButtonElement
+let shareableLink = document.querySelector('#Shareablelink') as HTMLDivElement;
+
+let headingdiv=document.querySelector("#Heading") as HTMLElement
+let formdiv = document.querySelector("#formA") as HTMLElement
+
+// headingdiv.style.display="none"
+// formdiv.style.display="none";
+// dynamicresume.style.display="block";
+
+function PrintPdf(){
+downloadPdfbutton.style.display="none";
+shareableLink.style.display="none";
+headingdiv.style.display="none";
+formdiv.style.display="none";
+
+window.print()
+downloadPdfbutton.style.display="block";
+shareableLink.style.display="block";
+headingdiv.style.display="block";
+formdiv.style.display="block";;
+
+}
+
+
+
 
 
